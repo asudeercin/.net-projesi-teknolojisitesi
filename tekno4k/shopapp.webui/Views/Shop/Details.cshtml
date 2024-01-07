@@ -1,0 +1,63 @@
+@model ProductDetailModel
+
+<div class="row">
+        
+<div class="col-md-3">
+    @await Component.InvokeAsync("Categories")
+    </div>
+    <div class="col-md-3">
+        <img src="~/img/@Model.Product.ImageUrl" class="img-fluid">
+        <h5><br>Yorumlar</h5>
+@if (Model.Comments != null && Model.Comments.Any())
+{
+    <ul>
+        @foreach (var comment in Model.Comments)
+        {
+            <li>@comment.UserName: @comment.Content</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Henüz yorum yok.</p>
+}
+    </div>
+    <div class="col-md-6">                
+            <h1 class="mb-3">@Model.Product.Name</h5> <hr>
+
+            @foreach (var item in Model.Categories)
+            {
+                <a asp-controller="shop" asp-action="list" asp-route-category="@item.Url" class="btn btn-link p-0 mb-3">@item.Name</a> 
+            }                           
+            
+            
+            <div class="mb-3">
+                <h4 class="text-primary mb-3">
+                    <i class="fas fa-lira-sign"></i>@Model.Product.Price
+                </h4>
+                  @if(User.Identity.IsAuthenticated)
+                {
+              
+                    
+                                 <p class="p-1" style="font-size:20px; color:rgb(55, 132, 255);">Genel yorumlar :  @Model.Product.Description</p>
+<form method="post" action="/shop/AddComment">
+    <div class="form-group">
+        <label for="comment">Yorumunuz:</label>
+        <textarea class="form-control" id="comment" name="comment" style="width:600px; height:80px;"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Yorum Ekle</button>
+</form>
+
+
+
+   
+             
+                 }
+
+               </div>
+
+            </h6>
+            
+    </div>
+</div>
+

@@ -1,0 +1,43 @@
+
+@model IEnumerable<shopapp.webui.Identity.User>
+
+
+  <div class="row">
+    <div class="col-md-12">
+        <h1 class="h3"><br>Şuanki Kullanıcı</h1>
+        <hr>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                   
+                    <td> Name</td>
+                    <td style="width: 160px;"></td>
+                </tr>
+            </thead>
+            <tbody>
+                       @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.FirstName</td>                              
+                               
+                        </tr>
+                        
+                        }
+            
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+
+}
+
